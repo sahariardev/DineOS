@@ -1,4 +1,5 @@
 export default function LoginView() {
+    console.log('API URL:', process.env.DATABASE_URL);
     return <div className="bg-slate-50 text-gray-800">
 
         <div className="flex items-center justify-center min-h-screen p-4">

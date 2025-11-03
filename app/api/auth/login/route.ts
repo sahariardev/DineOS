@@ -60,6 +60,7 @@ export async function POST(request: Request) {
             {expiresIn: '1d'} // 1-day expiry
         );
 
+
         const cookie = serialize('authToken', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',

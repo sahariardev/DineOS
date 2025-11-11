@@ -53,3 +53,13 @@ export type Store = Prisma.StoreModel
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model Permission
+ * 
+ */
+export type Permission = Prisma.PermissionModel
+/**
+ * Model UserPermission
+ * 
+ */
+export type UserPermission = Prisma.UserPermissionModel

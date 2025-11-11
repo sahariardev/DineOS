@@ -1,8 +1,8 @@
 import {NextResponse} from 'next/server';
-import {PrismaClient} from '@prisma/client'; // Adjust path as needed
 import jwt from 'jsonwebtoken';
 import {serialize} from 'cookie';
 import {verifyPassword} from "@/lib/util";
+import { PrismaClient } from '@/app/generated/prisma/client';
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -14,9 +14,9 @@ if (!JWT_SECRET) {
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const {usermail, storeName, password} = body;
+        const {email: email, storeName, password} = body;
 
-        if (!usermail || !storeName || !password) {
+        if (!email || !storeName || !password) {
             return NextResponse.json({error: 'All fields are required'}, {status: 400});
         }
 
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
         const user = await prisma.user.findUnique({
             where: {
                 email_store: {
-                    email: usermail,
+                    email: email,
                     storeId: store.id,
                 },
             },

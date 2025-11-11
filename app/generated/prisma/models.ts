@@ -9,4 +9,6 @@
  */
 export type * from './models/Store'
 export type * from './models/User'
+export type * from './models/Permission'
+export type * from './models/UserPermission'
 export type * from './commonInputTypes'

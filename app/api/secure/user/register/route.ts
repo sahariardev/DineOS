@@ -1,15 +1,15 @@
 import {NextResponse} from 'next/server';
-import {PrismaClient} from '@prisma/client';
 import {hashPassword} from "@/lib/util";
+import { PrismaClient } from '@/app/generated/prisma/client';
 
 const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const {usermail, storeName, password} = body;
+        const {email: email, storeName, password, firstName, lastName} = body;
 
-        if (!usermail || !storeName || !password) {
+        if (!email || !storeName || !password) {
             return NextResponse.json({error: 'Email, store name, and password are required'}, {status: 400});
         }
 
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
         const existingUser = await prisma.user.findUnique({
             where: {
                 email_store: {
-                    email: usermail,
+                    email: email,
                     storeId: store.id,
                 },
             },
@@ -39,16 +39,17 @@ export async function POST(request: Request) {
 
         const user = await prisma.user.create({
             data: {
-                email: usermail,
+                email: email,
                 passwordHash: passwordHash,
                 storeId: store.id,
+                firstName: firstName,
+                lastName: lastName,
             },
         });
 
         return NextResponse.json({
             id: user.id,
             email: user.email,
-            role: user.role,
             storeId: user.storeId,
         }, {status: 201});
 

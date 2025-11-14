@@ -1,0 +1,85 @@
+# curl --location 'http://localhost:3000/api/auth/login'
+#--header 'Content-Type: application/json'
+#--header 'Cookie: authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbWh1MzlrM2wwMDAzdjZuMGVlMGo5OGR5IiwiZW1haWwiOiJyaWZhdEBkaW5lT3MuY29tIiwic3RvcmVJZCI6ImNtaHUydGFmeTAwMDB2Njg4YnF1Y3NvMzEiLCJzdG9yZU5hbWUiOiJTeXN0ZW0iLCJpYXQiOjE3NjMxMjkxMzYsImV4cCI6MTc2MzIxNTUzNn0.lko1kwhSK6OThxCP0zojzXtVP0M9WJGhUcUzoGvoM0M'
+#--data-raw '{
+#    "email" : "rifat@dineOs.com",
+#    "storeName" : "System",
+#    "password": "rifat1234"
+#}'
+POST http://localhost:3000/api/auth/login
+Cookie: authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbWh1MzlrM2wwMDAzdjZuMGVlMGo5OGR5IiwiZW1haWwiOiJyaWZhdEBkaW5lT3MuY29tIiwic3RvcmVJZCI6ImNtaHUydGFmeTAwMDB2Njg4YnF1Y3NvMzEiLCJzdG9yZU5hbWUiOiJTeXN0ZW0iLCJpYXQiOjE3NjMxMjkxMzYsImV4cCI6MTc2MzIxNTUzNn0.lko1kwhSK6OThxCP0zojzXtVP0M9WJGhUcUzoGvoM0M
+Content-Type: application/json
+
+{
+  "email" : "rifat@dineOs.com",
+  "storeName" : "System",
+  "password": "rifat1234"
+}
+
+###
+
+# curl --location 'http://localhost:3000/api/secure/user/register'
+#--header 'Content-Type: application/json'
+#--header 'Cookie: authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbWh1MzlrM2wwMDAzdjZuMGVlMGo5OGR5IiwiZW1haWwiOiJyaWZhdEBkaW5lT3MuY29tIiwic3RvcmVJZCI6ImNtaHUydGFmeTAwMDB2Njg4YnF1Y3NvMzEiLCJzdG9yZU5hbWUiOiJTeXN0ZW0iLCJpYXQiOjE3NjMxMjkxMzYsImV4cCI6MTc2MzIxNTUzNn0.lko1kwhSK6OThxCP0zojzXtVP0M9WJGhUcUzoGvoM0M'
+#--data-raw '{
+#    "email" : "rifat2@dineOs.com",
+#    "storeName" : "System",
+#    "password": "rifat1234",
+#    "firstName" : "Rifat",
+#    "lastName" : "Khandoker"
+#}'
+POST http://localhost:3000/api/secure/user/register
+Cookie: authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbWh1MzlrM2wwMDAzdjZuMGVlMGo5OGR5IiwiZW1haWwiOiJyaWZhdEBkaW5lT3MuY29tIiwic3RvcmVJZCI6ImNtaHUydGFmeTAwMDB2Njg4YnF1Y3NvMzEiLCJzdG9yZU5hbWUiOiJTeXN0ZW0iLCJpYXQiOjE3NjMxMjkxMzYsImV4cCI6MTc2MzIxNTUzNn0.lko1kwhSK6OThxCP0zojzXtVP0M9WJGhUcUzoGvoM0M
+Content-Type: application/json
+
+{
+  "email" : "rifat2@dineOs.com",
+  "storeName" : "System",
+  "password": "rifat1234",
+  "firstName" : "Rifat",
+  "lastName" : "Khandoker"
+}
+
+###
+
+# curl --location 'http://localhost:3000/api/secure/role'
+#--header 'Content-Type: application/json'
+#--header 'Cookie: authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbWh1MzlrM2wwMDAzdjZuMGVlMGo5OGR5IiwiZW1haWwiOiJyaWZhdEBkaW5lT3MuY29tIiwic3RvcmVJZCI6ImNtaHUydGFmeTAwMDB2Njg4YnF1Y3NvMzEiLCJzdG9yZU5hbWUiOiJTeXN0ZW0iLCJpYXQiOjE3NjMxMjkxMzYsImV4cCI6MTc2MzIxNTUzNn0.lko1kwhSK6OThxCP0zojzXtVP0M9WJGhUcUzoGvoM0M'
+#--data '{
+#    "userId" : "cmhyxkvat0001v6x412d20t7y",
+#    "permissionIds" : ["2", "3"]
+#}'
+POST http://localhost:3000/api/secure/role
+Cookie: authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbWh1MzlrM2wwMDAzdjZuMGVlMGo5OGR5IiwiZW1haWwiOiJyaWZhdEBkaW5lT3MuY29tIiwic3RvcmVJZCI6ImNtaHUydGFmeTAwMDB2Njg4YnF1Y3NvMzEiLCJzdG9yZU5hbWUiOiJTeXN0ZW0iLCJpYXQiOjE3NjMxMjkxMzYsImV4cCI6MTc2MzIxNTUzNn0.lko1kwhSK6OThxCP0zojzXtVP0M9WJGhUcUzoGvoM0M
+Content-Type: application/json
+
+{
+  "userId" : "cmhyxkvat0001v6x412d20t7y",
+  "permissionIds" : ["2", "3"]
+}
+
+###
+
+# curl --location --request DELETE 'http://localhost:3000/api/secure/role'
+#--header 'Content-Type: application/json'
+#--header 'Cookie: authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbWh1MzlrM2wwMDAzdjZuMGVlMGo5OGR5IiwiZW1haWwiOiJyaWZhdEBkaW5lT3MuY29tIiwic3RvcmVJZCI6ImNtaHUydGFmeTAwMDB2Njg4YnF1Y3NvMzEiLCJzdG9yZU5hbWUiOiJTeXN0ZW0iLCJpYXQiOjE3NjMxMjkxMzYsImV4cCI6MTc2MzIxNTUzNn0.lko1kwhSK6OThxCP0zojzXtVP0M9WJGhUcUzoGvoM0M'
+#--data '{
+#    "userId" : "cmhyxkvat0001v6x412d20t7y",
+#    "permissionIds" : ["2", "3"]
+#}'
+DELETE http://localhost:3000/api/secure/role
+Cookie: authToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjbWh1MzlrM2wwMDAzdjZuMGVlMGo5OGR5IiwiZW1haWwiOiJyaWZhdEBkaW5lT3MuY29tIiwic3RvcmVJZCI6ImNtaHUydGFmeTAwMDB2Njg4YnF1Y3NvMzEiLCJzdG9yZU5hbWUiOiJTeXN0ZW0iLCJpYXQiOjE3NjMxMjkxMzYsImV4cCI6MTc2MzIxNTUzNn0.lko1kwhSK6OThxCP0zojzXtVP0M9WJGhUcUzoGvoM0M
+Content-Type: application/json
+
+{
+  "userId" : "cmhyxkvat0001v6x412d20t7y",
+  "permissionIds" : ["2", "3"]
+}
+
+###
+
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=WebStorm
+
+###

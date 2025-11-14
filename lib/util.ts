@@ -1,6 +1,6 @@
 import {compareSync, genSaltSync, hashSync} from 'bcryptjs';
-import {Store} from "@/app/generated/prisma/client";
 import {PrismaClient} from "@prisma/client";
+import {User} from "@/lib/types";
 
 const SALT_ROUNDS = 12;
 
@@ -38,4 +38,45 @@ export async function getUserStore(request: Request) {
     }
 
     return userWithStore;
+}
+
+export async function getLoggedInUser(request: Request, prisma: PrismaClient) {
+    const userId = request.headers.get('x-user-id');
+
+
+    const userWithStore = await prisma.user.findUnique({
+        where: {id: userId},
+        include: {store: true, permissions: true},
+    })
+
+    if (!userWithStore) {
+        throw new Error('User not found');
+    }
+
+    console.log(`Logged in:`, userWithStore);
+
+    return userWithStore;
+}
+
+export async function getUser(userId: string, prisma: PrismaClient): Promise<User> {
+    const userWithStore = await prisma.user.findUnique({
+        where: {id: userId},
+        include: {store: true, permissions: true},
+    })
+
+    if (!userWithStore) {
+        throw new Error('User not found');
+    }
+
+    console.log(`Logged in:`, userWithStore);
+
+    return userWithStore;
+}
+
+export function isSystemUser(user: User) {
+    return user.store.name === 'System'
+}
+
+export function isRoleAdmin(user: User) {
+    return user.permissions.map(p => p.permission.name).includes('ROLE_ADMIN');
 }

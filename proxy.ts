@@ -2,7 +2,6 @@ import type {NextRequest} from 'next/server';
 import {NextResponse} from 'next/server';
 import jwt from "jsonwebtoken";
 
-
 export async function proxy(req: NextRequest) {
     const token = req.cookies.get('authToken')?.value;
 
@@ -17,7 +16,7 @@ export async function proxy(req: NextRequest) {
     }
 
     const requestHeaders = new Headers(req.headers);
-    requestHeaders.set('x-user-id', user.id as string);
+    requestHeaders.set('x-user-id', user.userId as string);
 
     const response = NextResponse.next({
         request: {

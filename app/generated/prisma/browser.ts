@@ -22,6 +22,16 @@ export * from './enums';
  */
 export type Store = Prisma.StoreModel
 /**
+ * Model OldData
+ * 
+ */
+export type OldData = Prisma.OldDataModel
+/**
+ * Model UserActivity
+ * 
+ */
+export type UserActivity = Prisma.UserActivityModel
+/**
  * Model User
  * 
  */

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
+    "migrate": "npx prisma migrate dev",
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",

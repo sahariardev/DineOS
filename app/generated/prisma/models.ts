@@ -8,6 +8,8 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/Store'
+export type * from './models/OldData'
+export type * from './models/UserActivity'
 export type * from './models/User'
 export type * from './models/Permission'
 export type * from './models/UserPermission'

@@ -1,7 +1,8 @@
 import {NextResponse} from "next/server";
 import {getLoggedInUser, getUser, isRoleAdmin, isSystemUser} from "@/lib/util";
-import { prisma as prismaClient } from "@/lib/prisma";
+import {prisma as prismaClient} from "@/lib/prisma";
 import {UnauthorizedAccess, ValidationError, WebSecurityException} from "@/lib/customError";
+import {logger} from "@/lib/logger";
 
 export async function POST(req: Request) {
     return await handleRequest(req, async (req) => {
@@ -48,8 +49,7 @@ export async function DELETE(request: Request) {
                 {status: 200}
             );
         } catch (error) {
-
-            console.error('Error removing permission from user:', error);
+            logger.error('Error removing permission from user:', error);
             return NextResponse.json(
                 {error: 'Internal server error'},
                 {status: 500}
@@ -90,7 +90,7 @@ async function handleRequest(req: Request, requestHandler: (req: Request) => Pro
     try {
         return await requestHandler(req);
     } catch (error) {
-        console.log(error);
+        logger.error('something went wrong', error);
         if (error instanceof ValidationError) {
             const e = error as ValidationError;
             return NextResponse.json(

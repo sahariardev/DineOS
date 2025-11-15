@@ -1,6 +1,7 @@
 import {compareSync, genSaltSync, hashSync} from 'bcryptjs';
-import { prisma } from "@/lib/prisma";
+import {prisma} from "@/lib/prisma";
 import {User} from "@/app/generated/prisma/client";
+import {logger} from "@/lib/logger";
 
 const SALT_ROUNDS = 12;
 
@@ -52,7 +53,7 @@ export async function getLoggedInUser(request: Request) {
         throw new Error('User not found');
     }
 
-    console.log(`Logged in:`, userWithStore);
+    logger.debug('Logged in:', userWithStore);
 
     return userWithStore;
 }
@@ -67,7 +68,7 @@ export async function getUser(userId: string): Promise<User> {
         throw new Error('User not found');
     }
 
-    console.log(`Logged in:`, userWithStore);
+    logger.debug('Logged in:', userWithStore)
 
     return userWithStore;
 }

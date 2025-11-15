@@ -2,9 +2,8 @@ import {NextResponse} from 'next/server';
 import jwt from 'jsonwebtoken';
 import {serialize} from 'cookie';
 import {verifyPassword} from "@/lib/util";
-import { PrismaClient } from '@/app/generated/prisma/client';
+import { prisma } from "@/lib/prisma";
 
-const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET;
 
 if (!JWT_SECRET) {

@@ -1,9 +1,7 @@
 import {NextResponse} from "next/server";
 import {getLoggedInUser, getUser, isRoleAdmin, isSystemUser} from "@/lib/util";
-import {PrismaClient} from "@/app/generated/prisma/client";
+import { prisma as prismaClient } from "@/lib/prisma";
 import {UnauthorizedAccess, ValidationError, WebSecurityException} from "@/lib/customError";
-
-const prismaClient = new PrismaClient();
 
 export async function POST(req: Request) {
     return await handleRequest(req, async (req) => {
@@ -61,7 +59,7 @@ export async function DELETE(request: Request) {
 }
 
 async function getRequestBodyAndCheckSanity(req: Request) {
-    const loggedInUser = await getLoggedInUser(req, prismaClient);
+    const loggedInUser = await getLoggedInUser(req);
 
     if (!isSystemUser(loggedInUser) && !isRoleAdmin(loggedInUser)) {
         throw new UnauthorizedAccess("User need permission to perform this action");
@@ -75,7 +73,7 @@ async function getRequestBodyAndCheckSanity(req: Request) {
     }
 
     if (!isSystemUser(loggedInUser) && isRoleAdmin(loggedInUser)) {
-        const requestedUser = await getUser(userId, prismaClient);
+        const requestedUser = await getUser(userId);
 
         if (requestedUser.store.id !== loggedInUser.store.id) {
             throw new WebSecurityException("User need permission to perform this action");

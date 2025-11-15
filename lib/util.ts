@@ -1,6 +1,6 @@
 import {compareSync, genSaltSync, hashSync} from 'bcryptjs';
-import {PrismaClient} from "@prisma/client";
-import {User} from "@/lib/types";
+import { prisma } from "@/lib/prisma";
+import {User} from "@/app/generated/prisma/client";
 
 const SALT_ROUNDS = 12;
 
@@ -25,7 +25,6 @@ export function verifyPassword(plainTextPassword: string, hash: string): boolean
 }
 
 export async function getUserStore(request: Request) {
-    const prisma = new PrismaClient();
 
     const userId = request.headers.get('x-user-id');
     const userWithStore = await prisma.user.findUnique({
@@ -40,7 +39,7 @@ export async function getUserStore(request: Request) {
     return userWithStore;
 }
 
-export async function getLoggedInUser(request: Request, prisma: PrismaClient) {
+export async function getLoggedInUser(request: Request) {
     const userId = request.headers.get('x-user-id');
 
 
@@ -58,7 +57,7 @@ export async function getLoggedInUser(request: Request, prisma: PrismaClient) {
     return userWithStore;
 }
 
-export async function getUser(userId: string, prisma: PrismaClient): Promise<User> {
+export async function getUser(userId: string): Promise<User> {
     const userWithStore = await prisma.user.findUnique({
         where: {id: userId},
         include: {store: true, permissions: true},
